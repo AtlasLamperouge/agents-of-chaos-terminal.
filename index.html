@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="tr">
 <head>
@@ -7,142 +8,125 @@
   <meta name="color-scheme" content="dark"/>
   <style>
     :root{
-      --bg:#0a0b0f; --panel:#11161d; --panel2:#0e141a; --edge:#1a212a;
-      --text:#eaf0f7; --muted:#9aa4b2; --accent:#c4002f; --accent2:#9f0026; --gold:#e6b400;
-      --ok:#68e0b1; --warn:#ffd58f; --err:#ff8ea1; --glass:rgba(255,255,255,0.08);
-      --radius:14px; --ring: rgba(196,0,47,0.22); --mono: ui-monospace, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+      --bg:#07090c; --panel:#0f141a; --panel2:#121820;
+      --text:#eaf0f7; --muted:#9aa4b2; --accent:#c4002f; --accent2:#8e0224; --gold:#e6b400;
+      --ok:#69e0b2; --warn:#ffd58f; --err:#ff8ea1;
+      --radius:14px; --ring: rgba(196,0,47,0.22);
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:radial-gradient(ellipse at center, #0a0b0f 0%, #07090c 60%, #050609 100%);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial}
+    html,body{height:100%;margin:0;background:#050609;color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
     .hidden{display:none!important}
-    .muted{color:var(--muted)}
-    .k{font-family:var(--mono);background:rgba(255,255,255,0.06);padding:4px 8px;border-radius:6px;color:var(--muted)}
-    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.06);color:var(--muted);font-size:12px;border:1px solid rgba(255,255,255,0.08)}
+    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.06);color:var(--muted);font-size:12px}
     .tag{padding:4px 8px;border-radius:8px;background:rgba(255,255,255,0.08);color:var(--muted);font-size:12px}
-    .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center, rgba(196,0,47,0.12) 0%, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.94) 100%);z-index:9999}
-    .login{width:480px;max-width:92%;background:linear-gradient(180deg,#141a20,#0f151a);border:1px solid rgba(255,255,255,0.08);border-radius:16px;box-shadow:0 60px 140px rgba(0,0,0,0.75);overflow:hidden}
-    .login .head{padding:18px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;gap:12px;align-items:center;justify-content:space-between}
-    .shield{width:56px;height:56px;background:#c4002f;border-radius:10px;-webkit-mask:url('https://upload.wikimedia.org/wikipedia/commons/0/0a/Chaos_Insurgency_Logo.svg') center/contain no-repeat;mask:url('https://upload.wikimedia.org/wikipedia/commons/0/0a/Chaos_Insurgency_Logo.svg') center/contain no-repeat;box-shadow:0 0 24px rgba(196,0,47,0.35)}
-    .login .title{font-weight:900;color:#eaeef6;letter-spacing:.8px}
-    .login .subtitle{font-size:12px;color:var(--muted)}
-    .login .body{padding:16px}
-    label{display:block;margin-bottom:6px;color:var(--muted);font-size:12px}
-    input,select,textarea{width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:#0c1217;color:var(--text);outline:none;font-size:14px}
-    input:focus,select:focus{box-shadow:0 0 0 6px var(--ring);border-color:var(--accent)}
-    .btn{padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.12);background:linear-gradient(180deg,var(--accent),var(--accent2));color:#fff;font-weight:700;cursor:pointer}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.1);color:var(--muted)}
-    .btn.red{background:linear-gradient(180deg,#8b0000,#6b0000)}
-    .btn.green{background:linear-gradient(180deg,#1f6b4a,#187244)}
-    .btn.gold{background:linear-gradient(180deg,#b18f00,#7c6300)}
-    .btn.small{padding:8px 10px;font-size:13px}
-    .row{display:flex;gap:10px;align-items:center}
-    .stack{display:flex;flex-direction:column;gap:10px}
     .status{min-height:18px;font-size:12px}
     .status.ok{color:var(--ok)} .status.warn{color:var(--warn)} .status.err{color:var(--err)}
-    .desc{font-size:12px;color:var(--muted)}
-    header.top{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(0,0,0,0.6),transparent);backdrop-filter:saturate(1.2) blur(4px);border-bottom:1px solid rgba(255,255,255,0.06)}
-    .topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .crest{width:40px;height:40px;border-radius:9px;background-image:url('https://image2url.com/images/1761488075220-95355a30-ca52-4688-bf7c-15534c73e9b2.webp');background-size:cover;background-position:center}
-    .title{font-weight:800;letter-spacing:.4px}
-    .subtitle{font-size:12px;color:var(--muted)}
-    .app{min-height:100vh;display:grid;grid-template-columns:260px 1fr;gap:18px}
-    @media (max-width:1100px){ .app{grid-template-columns:1fr} }
-    aside.nav{background:linear-gradient(180deg,#11161d,#0e141a);border-right:1px solid rgba(255,255,255,0.06);min-height:calc(100vh - 54px);position:sticky;top:54px}
+    /* LOGIN OVERLAY — blocks everything until auth */
+    .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+      background:radial-gradient(circle at center, rgba(196,0,47,0.18) 0%, rgba(0,0,0,0.92) 55%, #000 100%);
+      z-index:9999}
+    .login{width:500px;max-width:92%;background:linear-gradient(180deg,#141a20,#0e141a);border:1px solid rgba(255,255,255,0.08);
+      border-radius:16px;box-shadow:0 70px 160px rgba(0,0,0,0.78)}
+    .login .head{padding:18px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center}
+    .login .title{font-weight:900;letter-spacing:.6px}
+    .login .subtitle{font-size:12px;color:var(--muted)}
+    .login .body{padding:16px}
+    .btn{padding:10px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn.red{background:linear-gradient(180deg,#c4002f,#7a001a);color:#fff}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted)}
+    input,select{width:100%;padding:11px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:#0c1217;color:var(--text)}
+    input:focus,select:focus{box-shadow:0 0 0 6px var(--ring);border-color:var(--accent)}
+    /* APP SHELL (hidden until auth) */
+    header.top{display:none;position:sticky;top:0;background:#0d1218;border-bottom:1px solid rgba(255,255,255,0.08);z-index:50}
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
+    .app{display:none;min-height:100vh;grid-template-columns:270px 1fr;gap:18px}
+    @media(max-width:1000px){.app{grid-template-columns:1fr}}
+    aside.nav{background:#11161d;border-right:1px solid rgba(255,255,255,0.08)}
     .nav-wrap{padding:14px;display:flex;flex-direction:column;gap:10px}
-    .nav-item{padding:10px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);cursor:pointer}
-    .nav-item.active{background:linear-gradient(180deg,#1a2027,#141a21);border-color:#2a323d}
+    .nav-item{padding:10px;border-radius:10px;background:rgba(255,255,255,0.06);cursor:pointer;border:1px solid rgba(255,255,255,0.10)}
+    .nav-item.active{background:#1a2027;border-color:#2a323d}
     main.content{padding:16px}
-    .card{background:linear-gradient(180deg,#141a20,#0f151a);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);box-shadow:0 30px 70px rgba(0,0,0,0.6);overflow:hidden}
-    .card-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.1)}
+    .card{background:#141a20;border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius);margin-bottom:16px;box-shadow:0 28px 60px rgba(0,0,0,0.45)}
+    .card-head{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.12);display:flex;justify-content:space-between;align-items:center}
     .card-body{padding:14px}
+    .list{display:grid;gap:10px}
+    .item{padding:10px;border-radius:10px;background:#121820;border:1px solid rgba(255,255,255,0.10);display:flex;justify-content:space-between}
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
     .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    @media (max-width:760px){ .grid-4{grid-template-columns:1fr 1fr} .grid-3{grid-template-columns:1fr 1fr} }
-    .list{display:grid;gap:10px}
-    .item{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:10px;background:linear-gradient(180deg,#121820,#0f151c);border:1px solid rgba(255,255,255,0.08)}
-    .meta{font-size:12px;color:var(--muted)}
-    .hr{height:1px;background:rgba(255,255,255,0.1);margin:12px 0}
-    .drawer{position:fixed;right:16px;bottom:16px;width:420px;max-width:96%;background:linear-gradient(180deg,#121820,#0e151b);border:1px solid rgba(255,255,255,0.1);border-radius:12px;box-shadow:0 40px 90px rgba(0,0,0,0.75);display:none;z-index:2000}
+    @media(max-width:820px){.grid-3{grid-template-columns:1fr 1fr} .grid-4{grid-template-columns:1fr 1fr}}
+    .row{display:flex;gap:10px;align-items:center}
+    .drawer{position:fixed;right:16px;bottom:16px;width:420px;max-width:96%;background:#121820;border:1px solid rgba(255,255,255,0.10);border-radius:12px;box-shadow:0 40px 90px rgba(0,0,0,0.75);display:none;z-index:2000}
     .drawer.open{display:block}
-    .drawer .head{padding:12px;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center}
+    .drawer .head{padding:12px;border-bottom:1px solid rgba(255,255,255,0.10);display:flex;justify-content:space-between;align-items:center}
     .drawer .body{padding:12px;max-height:60vh;overflow:auto}
   </style>
 </head>
 <body>
-  <div id="gate" class="overlay" role="dialog" aria-modal="true">
-    <div class="login" role="region" aria-label="HR secure login">
+  <!-- LOGIN OVERLAY -->
+  <div id="gate" class="overlay">
+    <div class="login">
       <div class="head">
-        <div class="row" style="gap:12px">
-          <div class="shield" aria-hidden="true"></div>
-          <div>
-            <div class="title">AGENTS OF CHAOS NODE</div>
-            <div class="subtitle"> Management Terminal • Authorized HR only</div>
-          </div>
+        <div>
+          <div class="title">CHAOS INSURGENCY NODE</div>
+          <div class="subtitle">PRIORITY 1 • AUTHENTICATION REQUIRED</div>
         </div>
         <div class="pill">Node AX‑01</div>
       </div>
       <div class="body">
-        <form id="authForm" autocomplete="off" class="stack">
-          <label for="accessCode">Security clearance key</label>
-          <input id="accessCode" type="password" placeholder="Enter HR key or HC master"/>
-          <div class="row">
-            <button id="btnAuth" type="button" class="btn">Authenticate</button>
-            <button id="btnReveal" type="button" class="btn ghost">Reveal</button>
-          </div>
-          <div id="authStatus" class="status" role="status" aria-live="polite"></div>
-          <div class="hr"></div>
-          <div class="desc">Unauthorized activity is logged and investigated</div>
-        </form>
+        <label for="accessCode">Security clearance key</label>
+        <input id="accessCode" type="password" placeholder="Enter HR key or HC master"/>
+        <div style="margin-top:10px;display:flex;gap:10px">
+          <button id="btnAuth" class="btn red">Authenticate</button>
+          <button id="btnReveal" class="btn ghost">Reveal</button>
+        </div>
+        <div id="authStatus" class="status" style="margin-top:8px"></div>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted)">Unauthorized activity is logged and investigated</div>
       </div>
     </div>
   </div>
+
+  <!-- DASHBOARD -->
   <header class="top">
     <div class="topbar">
-      <div class="brand">
-        <div class="crest" aria-hidden="true"></div>
-        <div>
-          <div class="title">AOC — HR Management Terminal </div>
-          <div class="subtitle">Agents of Chaos • Faction HR</div>
-        </div>
-      </div>
-      <div class="row">
-        <div id="sessionRole" class="pill">Role: Unknown</div>
-        <button id="btnLogout" class="btn ghost small">Logout</button>
-      </div>
+      <div class="title">AOC — HR Management Console</div>
+      <div id="sessionRole" class="pill">Role: Unknown</div>
     </div>
   </header>
 
   <div class="app">
+    <!-- Sidebar -->
     <aside class="nav">
       <div class="nav-wrap">
-        <div class="muted">Navigation</div>
-        <div class="nav-item active" data-target="view-ops">Insurgents</div>
+        <div class="nav-item active" data-target="view-ops">Operators</div>
         <div class="nav-item" data-target="view-actions">Actions</div>
         <div class="nav-item" data-target="view-feed">Feed & Audit</div>
         <div class="nav-item" data-target="view-hr">HR management</div>
         <div class="nav-item" data-target="view-ref">Reference</div>
-        <div class="hr"></div>
-        <div class="muted">Tools (HC only)</div>
-        <button id="btnExportUsers" class="btn ghost small">Export Users</button>
-        <button id="btnExportFeed" class="btn ghost small">Export Feed</button>
-        <button id="btnClearLocal" class="btn ghost small">Clear Local</button>
+        <div class="row" style="margin-top:10px">
+          <button id="btnExportUsers" class="btn ghost">Export Users</button>
+          <button id="btnExportFeed" class="btn ghost">Export Feed</button>
+          <button id="btnClearLocal" class="btn ghost">Clear Local</button>
+        </div>
       </div>
     </aside>
 
+    <!-- Main content -->
     <main class="content">
+      <!-- Operators -->
       <section id="view-ops" class="card">
         <div class="card-head">
-          <div>
-            <div class="title">Insurgent Registry</div>
-            <div class="subtitle">Add operators and manage ranks, XP, suspensions</div>
-          </div>
-          <div class="row">
-            <input id="searchUser" placeholder="Search Discord ID or codename" style="width:240px"/>
+          <div class="row" style="justify-content:space-between;width:100%">
+            <div class="row" style="gap:12px">
+              <div class="title">Operator registry</div>
+              <div class="tag">Manage ranks, XP, suspensions</div>
+            </div>
+            <div class="row">
+              <input id="searchUser" placeholder="Search Discord ID or codename" style="width:240px"/>
+            </div>
           </div>
         </div>
         <div class="card-body">
+          <!-- Operator add form -->
           <div class="card" style="padding:12px;margin-bottom:12px">
             <div class="title" style="font-size:16px">Log an operator</div>
             <div class="grid-3" style="margin-top:8px">
@@ -161,7 +145,7 @@
             </div>
             <div class="grid-4" style="margin-top:8px">
               <div>
-                <label>Rank</label>
+                <label>Rank name</label>
                 <input id="aRankName" placeholder="Elite Operator"/>
               </div>
               <div>
@@ -173,12 +157,12 @@
                 <input id="aXp" type="number" placeholder="0"/>
               </div>
               <div>
-                <label>Status</label>
+                <label>Tier</label>
                 <select id="aTier">
-                  <option value="LOW">LR</option>
-                  <option value="MIDDLE">MR</option>
-                  <option value="HIGH">HR</option>
-                  <option value="NONXP"></option>
+                  <option value="LOW">Low Rank</option>
+                  <option value="MIDDLE">Middle Rank</option>
+                  <option value="HIGH">High Rank</option>
+                  <option value="NONXP">Non‑XP</option>
                 </select>
               </div>
             </div>
@@ -191,9 +175,9 @@
                 <label>Authority</label>
                 <select id="aAuthority">
                   <option value="">None</option>
-                  <option value="LOW">Low Authority</option>
-                  <option value="MIDDLE">Middle Authority</option>
-                  <option value="HIGH">HIGH Authority</option>
+                  <option value="LOW">LOW OFFICER</option>
+                  <option value="MIDDLE">MIDDLE OFFICER</option>
+                  <option value="HIGH">HIGH RANK OFFICER</option>
                 </select>
               </div>
             </div>
@@ -208,20 +192,21 @@
         </div>
       </section>
 
+      <!-- Actions -->
       <section id="view-actions" class="card hidden">
         <div class="card-head">
-          <div>
+          <div class="row" style="gap:12px">
             <div class="title">Actions</div>
-            <div class="subtitle">Grant XP • Promote • Demote • Suspend</div>
+            <div class="tag">Grant XP • Promote • Demote • Suspend</div>
           </div>
         </div>
-        <div class="card-body stack">
-          <div class="card stack" style="padding:12px">
+        <div class="card-body">
+          <div class="card" style="padding:12px;margin-bottom:12px">
             <div class="row" style="justify-content:space-between">
               <label>Grant XP</label>
               <div class="tag" id="gxRankView">Rank: —</div>
             </div>
-            <div class="grid-3">
+            <div class="grid-3" style="margin-top:8px">
               <input id="gxDiscord" placeholder="Discord ID"/>
               <input id="gxAmount" type="number" placeholder="Amount"/>
               <select id="gxReason">
@@ -233,76 +218,77 @@
                 <option>Manual Adjustment</option>
               </select>
             </div>
-            <div class="grid-2">
+            <div class="grid-2" style="margin-top:8px">
               <input id="gxNote" placeholder="Note (optional)"/>
               <input id="gxRef" placeholder="Ref (optional)"/>
             </div>
-            <div class="row">
-              <button id="btnGrantXp" class="btn green">Grant</button>
+            <div class="row" style="margin-top:8px">
+              <button id="btnGrantXp" class="btn" style="background:linear-gradient(180deg,#1f6b4a,#187244)">Grant</button>
               <button id="btnGrantReset" class="btn ghost">Reset</button>
             </div>
-            <div id="grantStatus" class="status"></div>
+            <div id="grantStatus" class="status" style="margin-top:6px"></div>
           </div>
 
-          <div class="card stack" style="padding:12px">
+          <div class="card" style="padding:12px;margin-bottom:12px">
             <div class="row" style="justify-content:space-between">
               <label>Promote</label>
               <div class="tag" id="pRankView">Current rank: —</div>
             </div>
-            <div class="grid-3">
+            <div class="grid-3" style="margin-top:8px">
               <input id="pDiscord" placeholder="Discord ID"/>
               <input id="pRank" placeholder="New Rank ID (e.g. 5001)"/>
               <input id="pNote" placeholder="Note (optional)"/>
             </div>
-            <div class="row">
-              <button id="btnPromote" class="btn gold">Promote</button>
+            <div class="row" style="margin-top:8px">
+              <button id="btnPromote" class="btn" style="background:linear-gradient(180deg,#b18f00,#7c6300)">Promote</button>
               <button id="btnPromoteReset" class="btn ghost">Reset</button>
             </div>
-            <div id="promoteStatus" class="status"></div>
+            <div id="promoteStatus" class="status" style="margin-top:6px"></div>
           </div>
 
-          <div class="card stack" style="padding:12px">
+          <div class="card" style="padding:12px;margin-bottom:12px">
             <div class="row" style="justify-content:space-between">
               <label>Demote</label>
               <div class="tag" id="dRankView">Current rank: —</div>
             </div>
-            <div class="grid-3">
+            <div class="grid-3" style="margin-top:8px">
               <input id="dDiscord" placeholder="Discord ID"/>
               <input id="dRank" placeholder="New Lower Rank ID"/>
               <input id="dNote" placeholder="Note (optional)"/>
             </div>
-            <div class="row">
-              <button id="btnDemote" class="btn red">Demote</button>
+            <div class="row" style="margin-top:8px">
+              <button id="btnDemote" class="btn" style="background:linear-gradient(180deg,#8b0000,#6b0000)">Demote</button>
               <button id="btnDemoteReset" class="btn ghost">Reset</button>
             </div>
-            <div id="demoteStatus" class="status"></div>
+            <div id="demoteStatus" class="status" style="margin-top:6px"></div>
           </div>
 
-          <div class="card stack" style="padding:12px">
+          <div class="card" style="padding:12px">
             <label>Suspend</label>
-            <div class="grid-3">
+            <div class="grid-3" style="margin-top:8px">
               <input id="sDiscord" placeholder="Discord ID"/>
               <input id="sDuration" placeholder="Duration (e.g. 7d)"/>
               <input id="sReason" placeholder="Reason"/>
             </div>
-            <div class="grid-2">
+            <div class="grid-2" style="margin-top:8px">
               <input id="sRef" placeholder="Ref (optional)"/>
               <div></div>
             </div>
-            <div class="row">
-              <button id="btnSuspend" class="btn red">Suspend</button>
+            <div class="row" style="margin-top:8px">
+              <button id="btnSuspend" class="btn" style="background:linear-gradient(180deg,#8b0000,#6b0000)">Suspend</button>
               <button id="btnSuspendReset" class="btn ghost">Reset</button>
             </div>
-            <div id="suspendStatus" class="status"></div>
+            <div id="suspendStatus" class="status" style="margin-top:6px"></div>
           </div>
         </div>
       </section>
 
+      <!-- Feed -->
       <section id="view-feed" class="card hidden">
         <div class="card-head">
-          <div>
+          <div class="row" style="gap:12px">
             <div class="title">Activity feed & audit trail</div>
-            <div class="subtitle">All actions recorded here.</div>
+            <div class="tag">All actions recorded (actor = HR account)</div>
           </div>
           <div class="row">
             <select id="feedFilter">
@@ -315,8 +301,10 @@
               <option value="PROMOTE">PROMOTE</option>
               <option value="DEMOTE">DEMOTE</option>
               <option value="USER_DELETE">USER_DELETE</option>
+              <option value="AUTH">AUTH</option>
+              <option value="AUTH_FAIL">AUTH_FAIL</option>
             </select>
-            <button id="btnRefreshFeed" class="btn ghost small">Refresh</button>
+            <button id="btnRefreshFeed" class="btn ghost">Refresh</button>
           </div>
         </div>
         <div class="card-body">
@@ -324,33 +312,37 @@
         </div>
       </section>
 
+      <!-- HR management -->
       <section id="view-hr" class="card hidden">
         <div class="card-head">
-          <div>
+          <div class="row" style="gap:12px">
             <div class="title">Controls & HR</div>
-            <div class="subtitle">HC-only Management; HC can sign in with key</div>
+            <div class="tag">HC-only edits</div>
           </div>
         </div>
-        <div class="card-body stack">
-          <div class="card" style="padding:12px">
-            <div class="muted">Enter HC Access to unlock HC editor</div>
+        <div class="card-body">
+          <div class="card" style="padding:12px;margin-bottom:12px">
+            <div class="row" style="justify-content:space-between">
+              <div class="muted">Enter HC master to unlock HR editor</div>
+              <div class="tag">Keys redacted unless HC unlocked</div>
+            </div>
             <div class="row" style="margin-top:8px">
               <input id="hcKey" type="password" placeholder="HC master"/>
               <button id="btnUnlockHr" class="btn ghost">Unlock</button>
             </div>
-            <div id="hrEditor" class="hidden stack" style="margin-top:10px">
+            <div id="hrEditor" class="hidden" style="margin-top:10px">
               <div class="grid-2">
                 <div>
-                  <label>Name</label>
+                  <label>New HR name</label>
                   <input id="hrName" placeholder="Name (e.g. Renzy HR)"/>
                 </div>
                 <div>
-                  <label>Key</label>
+                  <label>New HR key</label>
                   <input id="hrKeyAdd" placeholder="AOC-HR-..."/>
                 </div>
               </div>
-              <div class="row">
-                <button id="btnAddHr" class="btn green">Add HR</button>
+              <div class="row" style="margin-top:8px">
+                <button id="btnAddHr" class="btn" style="background:linear-gradient(180deg,#1f6b4a,#187244)">Add HR</button>
                 <button id="btnShowHr" class="btn ghost">Show HR list</button>
               </div>
             </div>
@@ -359,42 +351,41 @@
           <div class="card" style="padding:12px">
             <div class="row" style="justify-content:space-between">
               <div class="muted">HR accounts</div>
-              <div class="tag">Keys redacted unless HC is unlocked</div>
+              <div class="tag">Supabase</div>
             </div>
             <div id="hrList" class="list" style="margin-top:10px"></div>
           </div>
         </div>
       </section>
 
+      <!-- Reference -->
       <section id="view-ref" class="card hidden">
         <div class="card-head">
-          <div>
-            <div class="title">Reference</div>
-            <div class="subtitle">Ranks, XP requirements & earning methods</div>
-          </div>
+          <div class="title">Reference</div>
         </div>
-        <div class="card-body stack">
-          <div class="card" style="padding:12px">
+        <div class="card-body">
+          <div class="card" style="padding:12px;margin-bottom:12px">
             <div class="title" style="font-size:16px">XP earning methods</div>
             <div class="list" style="margin-top:8px">
-              <div class="item"><span>Team Deployment — 15 Minutes</span><span class="tag">4 XP</span></div>
-              <div class="item"><span>Team Deployment — 30 Minutes</span><span class="tag">8 XP</span></div>
-              <div class="item"><span>Team Deployment — 60 Minutes</span><span class="tag">16 XP</span></div>
-              <div class="item"><span>Special Deployment — 15 Minutes</span><span class="tag">8 XP</span></div>
-              <div class="item"><span>Special Deployment — 30 Minutes</span><span class="tag">16 XP</span></div>
-              <div class="item"><span>Special Deployment — 60 Minutes</span><span class="tag">32 XP</span></div>
-              <div class="item"><span>Joining Trainings</span><span class="tag">20 XP</span></div>
-              <div class="item"><span>Hosting Team Deployment — 15 Minutes</span><span class="tag">3 XP</span></div>
-              <div class="item"><span>Hosting Team Deployment — 30 Minutes</span><span class="tag">6 XP</span></div>
-              <div class="item"><span>Hosting Team Deployment — 60 Minutes</span><span class="tag">12 XP</span></div>
+              <div class="item"><span>Team Deployment — 15 dk</span><span class="tag">4 XP</span></div>
+              <div class="item"><span>Team Deployment — 30 dk</span><span class="tag">8 XP</span></div>
+              <div class="item"><span>Team Deployment — 60 dk</span><span class="tag">16 XP</span></div>
+              <div class="item"><span>Special Deployment — 15 dk</span><span class="tag">8 XP</span></div>
+              <div class="item"><span>Special Deployment — 30 dk</span><span class="tag">16 XP</span></div>
+              <div class="item"><span>Special Deployment — 60 dk</span><span class="tag">32 XP</span></div>
+              <div class="item"><span>Training (katılım)</span><span class="tag">20 XP</span></div>
+              <div class="item"><span>Hosting Team Deployment — 15 dk</span><span class="tag">3 XP</span></div>
+              <div class="item"><span>Hosting Team Deployment — 30 dk</span><span class="tag">6 XP</span></div>
+              <div class="item"><span>Hosting Team Deployment — 60 dk</span><span class="tag">12 XP</span></div>
               <div class="item"><span>Hosting Training</span><span class="tag">5 XP</span></div>
               <div class="item"><span>Recruiting an Insurgent</span><span class="tag">3 XP</span></div>
             </div>
-            <div class="hr"></div>
-            <div class="title" style="font-size:16px">Rank requirements</div>
-            <div class="grid-2" style="margin-top:8px">
+          </div>
+
+          <div class="card" style="padding:12px">
+            <div class="grid-2" style="gap:12px">
               <div>
-                <div class="subtitle">High Rank (HR XP)</div>
+                <div class="title" style="font-size:16px">High Rank (HR XP)</div>
                 <div class="list" style="margin-top:8px">
                   <div class="item"><span>Head Commander</span><span class="tag">890 HR XP</span></div>
                   <div class="item"><span>Elite Commander</span><span class="tag">500 HR XP</span></div>
@@ -405,7 +396,7 @@
                 </div>
               </div>
               <div>
-                <div class="subtitle">Middle / Low Rank</div>
+                <div class="title" style="font-size:16px">Middle / Low Rank</div>
                 <div class="list" style="margin-top:8px">
                   <div class="item"><span>Chief Officer</span><span class="tag">2345 XP</span></div>
                   <div class="item"><span>High Officer I</span><span class="tag">2010 XP</span></div>
@@ -431,139 +422,172 @@
     </main>
   </div>
 
+  <!-- Drawer -->
   <div id="drawer" class="drawer" role="dialog" aria-hidden="true">
     <div class="head">
       <div id="drawerTitle">Operator</div>
-      <div class="row"><button id="btnCloseDrawer" class="btn ghost small">Close</button></div>
+      <div class="row">
+        <button id="btnCloseDrawer" class="btn ghost">Close</button>
+      </div>
     </div>
     <div id="drawerBody" class="body"></div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script>
     (function(){
       'use strict';
 
-      const K = { HR:'aoc_hr_v4', USERS:'aoc_users_v4', FEED:'aoc_feed_v4', SUSP:'aoc_susp_v4', SESSION:'aoc_session_v4' };
-      const DEFAULT_HR = [
-        { name:'Demo HR', key:'AOC-HR-RANK-ACCESS-X1047248524' },
-        { name:'Sigma boy', key:'X*124155' }
-      ];
-      const HC_MASTER = 'AOC-HC-ACCESS-X-X-X-9081298478149';
-      const DEFAULT_USERS = [];
-      const DEFAULT_FEED = [{ at:new Date().toISOString(), type:'SYSTEM', actor:'SYSTEM', message:'Feed initialized', ref:'INIT' }];
-      const DEFAULT_SUSP = [];
+      const supa = supabase.createClient(
+        "https://nxeaerflgclotjcpctlw.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54ZWFlcmZsZ2Nsb3RqY3BjdGx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3Mzc2MTQsImV4cCI6MjA3NzMxMzYxNH0.TveLcJE-VEpkSA8GIrYsyBzETPPZVFuwmcm6EERG6rA"
+      );
 
+      /* Keys & defaults */
+      const HC_MASTER = 'AOC-HC-ACCESS-X-X-X-9081298478149';
+
+      /* Helpers */
       const $ = s => document.querySelector(s);
       const $$ = s => Array.from(document.querySelectorAll(s));
-      const load = (k,f) => { try{ const v=localStorage.getItem(k); return v?JSON.parse(v):JSON.parse(JSON.stringify(f)); }catch(e){ return JSON.parse(JSON.stringify(f)); } };
-      const save = (k,v) => { try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){ console.error(e); } };
       const now = () => new Date().toISOString();
       const uid = (n=6) => Math.random().toString(36).substr(2,n).toUpperCase();
       const isDiscord = id => /^\d{6,}$/.test(String(id));
 
-      if(!localStorage.getItem(K.HR)) save(K.HR, DEFAULT_HR);
-      if(!localStorage.getItem(K.USERS)) save(K.USERS, DEFAULT_USERS);
-      if(!localStorage.getItem(K.FEED)) save(K.FEED, DEFAULT_FEED);
-      if(!localStorage.getItem(K.SUSP)) save(K.SUSP, DEFAULT_SUSP);
-
+      /* Elements */
       const gate = $('#gate'), accessCode = $('#accessCode'), btnAuth = $('#btnAuth'), btnReveal = $('#btnReveal'), authStatus = $('#authStatus');
-      const sessionRole = $('#sessionRole'), btnLogout = $('#btnLogout');
-      const navItems = $$('.nav-item'); const views = ['view-ops','view-actions','view-feed','view-hr','view-ref'];
-
+      const sessionRole = $('#sessionRole');
+      const usersList = $('#usersList'), searchUser = $('#searchUser');
       const aDiscord = $('#aDiscord'), aCodename = $('#aCodename'), aRoblox = $('#aRoblox'), aRankName = $('#aRankName'), aRankId = $('#aRankId'), aXp = $('#aXp'), aTier = $('#aTier'), aPrefix = $('#aPrefix'), aAuthority = $('#aAuthority');
       const btnAddUser = $('#btnAddUser'), btnResetAdd = $('#btnResetAdd'), addStatus = $('#addStatus');
-
-      const usersList = $('#usersList'), searchUser = $('#searchUser');
-
       const gxDiscord = $('#gxDiscord'), gxAmount = $('#gxAmount'), gxReason = $('#gxReason'), gxNote = $('#gxNote'), gxRef = $('#gxRef'), btnGrantXp = $('#btnGrantXp'), btnGrantReset = $('#btnGrantReset'), grantStatus = $('#grantStatus'), gxRankView = $('#gxRankView');
       const pDiscord = $('#pDiscord'), pRank = $('#pRank'), pNote = $('#pNote'), btnPromote = $('#btnPromote'), btnPromoteReset = $('#btnPromoteReset'), promoteStatus = $('#promoteStatus'), pRankView = $('#pRankView');
       const dDiscord = $('#dDiscord'), dRank = $('#dRank'), dNote = $('#dNote'), btnDemote = $('#btnDemote'), btnDemoteReset = $('#btnDemoteReset'), demoteStatus = $('#demoteStatus'), dRankView = $('#dRankView');
       const sDiscord = $('#sDiscord'), sDuration = $('#sDuration'), sReason = $('#sReason'), sRef = $('#sRef'), btnSuspend = $('#btnSuspend'), btnSuspendReset = $('#btnSuspendReset'), suspendStatus = $('#suspendStatus');
-
       const feedList = $('#feedList'), feedFilter = $('#feedFilter'), btnRefreshFeed = $('#btnRefreshFeed');
-
       const hcKey = $('#hcKey'), btnUnlockHr = $('#btnUnlockHr'), hrEditor = $('#hrEditor'), hrName = $('#hrName'), hrKeyAdd = $('#hrKeyAdd'), btnAddHr = $('#btnAddHr'), btnShowHr = $('#btnShowHr'), hrList = $('#hrList');
-
       const btnExportUsers = $('#btnExportUsers'), btnExportFeed = $('#btnExportFeed'), btnClearLocal = $('#btnClearLocal');
-
       const drawer = $('#drawer'), drawerTitle = $('#drawerTitle'), drawerBody = $('#drawerBody'), btnCloseDrawer = $('#btnCloseDrawer');
 
-      const getSession = () => { try{ const v=localStorage.getItem(K.SESSION); return v?JSON.parse(v):null; }catch(e){ return null; } };
-      const setSession = (obj) => save(K.SESSION, obj);
-      const clearSession = () => { try{ localStorage.removeItem(K.SESSION);}catch(e){} };
-      const actor = () => { const s=getSession(); return s? s.name : 'UNKNOWN'; };
+      /* Session helpers (in-memory only for banner) */
+      let session = null;
+      const setSession = (obj) => { session = obj; };
+      const actor = () => { return session ? session.name : 'UNKNOWN'; };
 
-      function pushFeed(item){ const f = load(K.FEED, DEFAULT_FEED); f.unshift(item); save(K.FEED,f); }
-      function renderFeed(){
-        const feed = load(K.FEED, DEFAULT_FEED), filter = feedFilter.value;
+      /* Supabase data helpers */
+      async function pushFeed(item){
+        await supa.from('audit_feed').insert([{
+          at: item.at || now(),
+          type: item.type,
+          actor: item.actor || actor(),
+          message: item.message || '',
+          ref: item.ref || uid()
+        }]);
+      }
+      async function fetchFeed(){
+        const filter = feedFilter.value;
+        let query = supa.from('audit_feed').select('*').order('at',{ascending:false}).limit(200);
+        if(filter) query = query.eq('type', filter);
+        const { data } = await query;
+        return data || [];
+      }
+      async function renderFeed(){
+        const feed = await fetchFeed();
         feedList.innerHTML = '';
-        feed.filter(e=> !filter || e.type===filter).slice(0,200).forEach(e=>{
+        feed.forEach(e=>{
           const row = document.createElement('div'); row.className='item';
-          row.innerHTML = `<div><strong>${e.type}</strong><div class="meta">${e.message}</div></div><div class="meta" style="text-align:right">${e.actor||'SYSTEM'}<br>${new Date(e.at).toLocaleString()}</div>`;
+          row.innerHTML = `<div><strong>${e.type}</strong><div class="tag" style="display:inline-block;margin-top:6px">${e.message||''}</div></div><div class="status" style="text-align:right">${e.actor||'SYSTEM'}<br>${new Date(e.at).toLocaleString()}</div>`;
           feedList.appendChild(row);
         });
       }
+      btnRefreshFeed.addEventListener('click', renderFeed);
+      feedFilter.addEventListener('change', renderFeed);
 
-      function renderUsers(){
-        const users = load(K.USERS, DEFAULT_USERS);
+      async function fetchUsers(){
         const q = (searchUser.value||'').trim().toLowerCase();
+        const { data } = await supa.from('operators').select('*').order('created_at',{ascending:false});
+        const users = (data||[]);
+        return users.filter(u=> !q || String(u.discord_id).includes(q) || (u.codename||'').toLowerCase().includes(q));
+      }
+      async function renderUsers(){
+        const users = await fetchUsers();
         usersList.innerHTML = '';
-        users.filter(u=> !q || String(u.discordId).includes(q) || (u.codename||'').toLowerCase().includes(q)).forEach(u=>{
+        users.forEach(u=>{
           const row = document.createElement('div'); row.className='item';
           const left = document.createElement('div');
           left.innerHTML = `
-            <div><strong>[${u.prefix||'AOC'}] "${u.codename||'N/A'}"</strong> <span class="tag">${u.tier||'—'}</span></div>
-            <div class="meta">
-              Discord: ${u.discordId} • Roblox: ${u.roblox||'N/A'} • Rank: ${u.rankName||'N/A'} (${u.rankId||'—'}) • XP: ${u.xp||0} ${u.suspended?'• Suspended':''}
-            </div>`;
+            <div><strong>[${u.prefix||'AOC'}] "${u.codename||'N/A'}"</strong> <span class="pill">${u.tier||'—'}</span></div>
+            <div class="status" style="color:var(--muted)">Discord: ${u.discord_id} • Roblox: ${u.roblox||'N/A'} • Rank: ${u.rank_name||'N/A'} (${u.rank_id||'—'}) • XP: ${u.xp||0} ${u.suspended?'• Suspended':''}</div>`;
           const right = document.createElement('div'); right.className='row';
-          const view = document.createElement('button'); view.className='btn ghost small'; view.textContent='View'; view.addEventListener('click', ()=> openDrawer(u.discordId));
-          const dec = document.createElement('button'); dec.className='btn ghost small'; dec.textContent='-XP'; dec.addEventListener('click', ()=>{
+
+          const view = document.createElement('button'); view.className='btn ghost'; view.textContent='View';
+          view.addEventListener('click', ()=> openDrawer(u.discord_id));
+
+          const dec = document.createElement('button'); dec.className='btn ghost'; dec.textContent='-XP';
+          dec.addEventListener('click', async ()=>{
             const v = prompt('Decrease XP by how much?','10'); const n = Number(v);
             if(!Number.isFinite(n)){ alert('Invalid'); return; }
-            u.xp = Math.max(0,(u.xp||0)-n);
-            save(K.USERS, load(K.USERS, DEFAULT_USERS).map(x=> x.discordId===u.discordId?u:x));
-            pushFeed({ at:now(), type:'XP_ADJUST', actor:actor(), message:`- ${n} XP → ${u.discordId}`, ref:uid() });
-            renderUsers(); renderFeed();
+            const newXp = Math.max(0,(u.xp||0)-n);
+            await supa.from('operators').update({ xp:newXp }).eq('discord_id', u.discord_id);
+            await pushFeed({ type:'XP_ADJUST', actor:actor(), message:`- ${n} XP → ${u.discord_id}`, ref:uid() });
+            await renderUsers(); await renderFeed();
           });
-          const del = document.createElement('button'); del.className='btn red small'; del.textContent='Delete'; del.addEventListener('click', ()=>{
+
+          const del = document.createElement('button'); del.className='btn'; del.style.background='linear-gradient(180deg,#8b0000,#6b0000)'; del.textContent='Delete';
+          del.addEventListener('click', async ()=>{
             if(!confirm('Delete operator?')) return;
-            const list = load(K.USERS, DEFAULT_USERS);
-            save(K.USERS, list.filter(x=> x.discordId!==u.discordId));
-            pushFeed({ at:now(), type:'USER_DELETE', actor:actor(), message:`DELETE ${u.discordId} (${u.codename})`, ref:uid() });
-            renderUsers(); renderFeed();
+            await supa.from('operators').delete().eq('discord_id', u.discord_id);
+            await pushFeed({ type:'USER_DELETE', actor:actor(), message:`DELETE ${u.discord_id} (${u.codename})`, ref:uid() });
+            await renderUsers(); await renderFeed();
           });
-          const susp = document.createElement('button'); susp.className='btn red small'; susp.textContent = u.suspended? 'Unsuspend':'Suspend';
-          susp.addEventListener('click', ()=>{
-            const list = load(K.USERS, DEFAULT_USERS);
-            const idx = list.findIndex(x=> x.discordId===u.discordId); if(idx===-1) return;
-            if(u.suspended){ list[idx].suspended=false; pushFeed({ at:now(), type:'SUSPEND', actor:actor(), message:`UNSUSPEND ${u.discordId}`, ref:uid() }); }
-            else { list[idx].suspended=true; list[idx].suspHistory=list[idx].suspHistory||[]; list[idx].suspHistory.push({ at:now(), reason:'Manual', duration:'N/A', by:actor() }); pushFeed({ at:now(), type:'SUSPEND', actor:actor(), message:`SUSPEND ${u.discordId} (Manual)`, ref:uid() }); }
-            save(K.USERS, list); renderUsers(); renderFeed();
+
+          const susp = document.createElement('button'); susp.className='btn'; susp.style.background='linear-gradient(180deg,#8b0000,#6b0000)'; susp.textContent = u.suspended? 'Unsuspend':'Suspend';
+          susp.addEventListener('click', async ()=>{
+            if(u.suspended){
+              await supa.from('operators').update({ suspended:false }).eq('discord_id', u.discord_id);
+              await pushFeed({ type:'SUSPEND', actor:actor(), message:`UNSUSPEND ${u.discord_id}`, ref:uid() });
+            } else {
+              await supa.from('operators').update({ suspended:true }).eq('discord_id', u.discord_id);
+              await supa.from('suspensions').insert([{ discord_id:u.discord_id, duration:'N/A', reason:'Manual', ref:uid(), created_at:now() }]);
+              await pushFeed({ type:'SUSPEND', actor:actor(), message:`SUSPEND ${u.discord_id} (Manual)`, ref:uid() });
+            }
+            await renderUsers(); await renderFeed();
           });
+
           right.appendChild(view); right.appendChild(dec); right.appendChild(del); right.appendChild(susp);
           row.appendChild(left); row.appendChild(right);
           usersList.appendChild(row);
         });
       }
+      searchUser.addEventListener('input', renderUsers);
 
-      function openDrawer(discord){
-        const u = load(K.USERS, DEFAULT_USERS).find(x=> x.discordId===discord); if(!u) return;
-        drawerTitle.textContent = `[${u.prefix||'AOC'}] "${u.codename}" • ${u.rankName||'N/A'} (${u.rankId||'—'})`;
+      async function openDrawer(discord){
+        const { data } = await supa.from('operators').select('*').eq('discord_id', discord).limit(1);
+        const u = data && data[0]; if(!u) return;
+        drawerTitle.textContent = `[${u.prefix||'AOC'}] "${u.codename}" • ${u.rank_name||'N/A'} (${u.rank_id||'—'})`;
         drawerBody.innerHTML = '';
-        drawerBody.innerHTML += `<div class="meta">Discord: ${u.discordId} • Roblox: ${u.roblox||'N/A'} • Tier: ${u.tier||'—'}</div>`;
-        drawerBody.innerHTML += `<div class="meta" style="margin-top:6px">Rank: ${u.rankName||'N/A'} (${u.rankId||'—'}) • XP: ${u.xp||0} • ${u.suspended?'Suspended':''}</div>`;
-        drawerBody.innerHTML += `<div class="hr"></div><div><strong>XP History</strong></div>`;
-        (u.xpHistory||[]).slice().reverse().forEach(h=> drawerBody.innerHTML += `<div class="meta">${h.at} • ${h.delta} • ${h.by} • ${h.note||''}</div>`);
-        drawerBody.innerHTML += `<div class="hr"></div><div><strong>Promotions / Demotions</strong></div>`;
-        (u.promoHistory||[]).slice().reverse().forEach(p=> drawerBody.innerHTML += `<div class="meta">${p.at} • ${p.demote?'DEMOTE':'PROMOTE'} ${p.from||'N/A'} → ${p.to} • ${p.by}</div>`);
-        drawerBody.innerHTML += `<div class="hr"></div><div><strong>Suspensions</strong></div>`;
-        (u.suspHistory||[]).slice().reverse().forEach(s=> drawerBody.innerHTML += `<div class="meta">${s.at} • ${s.reason} • ${s.duration||'N/A'} • ${s.by||'HR'}</div>`);
+        drawerBody.innerHTML += `<div class="status" style="color:var(--muted)">Discord: ${u.discord_id} • Roblox: ${u.roblox||'N/A'} • Tier: ${u.tier||'—'}</div>`;
+        drawerBody.innerHTML += `<div class="status" style="color:var(--muted);margin-top:6px">Rank: ${u.rank_name||'N/A'} (${u.rank_id||'—'}) • XP: ${u.xp||0} • ${u.suspended?'Suspended':''}</div>`;
+
+        const { data: xps } = await supa.from('xp_history').select('*').eq('discord_id', discord).order('created_at',{ascending:false}).limit(50);
+        drawerBody.innerHTML += `<div style="margin-top:10px"><strong>XP History</strong></div>`;
+        (xps||[]).forEach(h=> drawerBody.innerHTML += `<div class="status" style="color:var(--muted)">${h.created_at} • +${h.amount} • ${h.reason||''} • ${h.note||''}</div>`);
+
+        const { data: promos } = await supa.from('promotions').select('*').eq('discord_id', discord).order('created_at',{ascending:false}).limit(50);
+        const { data: demos } = await supa.from('demotions').select('*').eq('discord_id', discord).order('created_at',{ascending:false}).limit(50);
+        drawerBody.innerHTML += `<div style="margin-top:10px"><strong>Promotions / Demotions</strong></div>`;
+        (promos||[]).forEach(p=> drawerBody.innerHTML += `<div class="status" style="color:var(--muted)">${p.created_at} • PROMOTE → ${p.new_rank} • ${p.note||''}</div>`);
+        (demos||[]).forEach(d=> drawerBody.innerHTML += `<div class="status" style="color:var(--muted)">${d.created_at} • DEMOTE → ${d.new_rank} • ${d.note||''}</div>`);
+
+        const { data: susps } = await supa.from('suspensions').select('*').eq('discord_id', discord).order('created_at',{ascending:false}).limit(50);
+        drawerBody.innerHTML += `<div style="margin-top:10px"><strong>Suspensions</strong></div>`;
+        (susps||[]).forEach(s=> drawerBody.innerHTML += `<div class="status" style="color:var(--muted)">${s.created_at} • ${s.reason} • ${s.duration||'N/A'}</div>`);
+
         drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');
       }
       btnCloseDrawer.addEventListener('click', ()=>{ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); });
 
-      btnAddUser.addEventListener('click', ()=>{
+      /* Add operator */
+      btnAddUser.addEventListener('click', async ()=>{
         const discordId = aDiscord.value.trim();
         const codename = aCodename.value.trim();
         const roblox = aRoblox.value.trim();
@@ -575,92 +599,87 @@
         const authority = aAuthority.value||'';
         if(!isDiscord(discordId)){ addStatus.textContent='Invalid Discord ID'; addStatus.className='status err'; return; }
         if(!codename || !roblox){ addStatus.textContent='Codename and Roblox required'; addStatus.className='status err'; return; }
-        const users = load(K.USERS, DEFAULT_USERS);
-        if(users.find(u=>u.discordId===discordId)){ addStatus.textContent='User exists'; addStatus.className='status warn'; return; }
-        const u = { discordId, codename, roblox, prefix, rankName:rankName||null, rankId:rankId||null, xp, tier, suspended:false, warnings:0, strikes:0, banned:false, xpHistory:[], promoHistory:[], suspHistory:[], authority };
-        users.push(u); save(K.USERS, users);
-        pushFeed({ at:now(), type:'USER_CREATE', actor:actor(), message:`CREATE ${discordId} ([${prefix}] "${codename}")`, ref:uid() });
+
+        const { data: exists } = await supa.from('operators').select('discord_id').eq('discord_id', discordId).limit(1);
+        if(exists && exists.length){ addStatus.textContent='User exists'; addStatus.className='status warn'; return; }
+
+        const u = { discord_id:discordId, codename, roblox, prefix, rank_name:rankName||null, rank_id:rankId||null, xp, tier, suspended:false, authority, created_at: now() };
+        const { error } = await supa.from('operators').insert([u]);
+        if(error){ addStatus.textContent='Insert error: '+error.message; addStatus.className='status err'; return; }
+
+        await pushFeed({ at:now(), type:'USER_CREATE', actor:actor(), message:`CREATE ${discordId} ([${prefix}] "${codename}")`, ref:uid() });
         addStatus.textContent='Operator logged'; addStatus.className='status ok';
         aDiscord.value=''; aCodename.value=''; aRoblox.value=''; aRankName.value=''; aRankId.value=''; aXp.value=''; aTier.value='LOW'; aPrefix.value='AOC'; aAuthority.value='';
-        renderUsers(); renderFeed();
+        await renderUsers(); await renderFeed();
       });
       btnResetAdd.addEventListener('click', ()=>{
         aDiscord.value=''; aCodename.value=''; aRoblox.value=''; aRankName.value=''; aRankId.value=''; aXp.value=''; aTier.value='LOW'; aPrefix.value='AOC'; aAuthority.value=''; addStatus.textContent=''; addStatus.className='status';
       });
 
-      function previewRank(discord, targetEl){
-        const u = load(K.USERS, DEFAULT_USERS).find(x=> x.discordId===discord);
-        targetEl.textContent = u ? `Current: ${u.rankName||'N/A'} (${u.rankId||'—'}) • XP ${u.xp||0}` : 'Rank: —';
+      /* Live rank previews */
+      async function previewRank(discord, targetEl){
+        const { data } = await supa.from('operators').select('rank_name,rank_id,xp').eq('discord_id', discord).limit(1);
+        const u = data && data[0];
+        targetEl.textContent = u ? `Current: ${u.rank_name||'N/A'} (${u.rank_id||'—'}) • XP ${u.xp||0}` : (targetEl===gxRankView?'Rank: —':'Current rank: —');
       }
       gxDiscord.addEventListener('input', ()=> previewRank(gxDiscord.value.trim(), gxRankView));
       pDiscord.addEventListener('input', ()=> previewRank(pDiscord.value.trim(), pRankView));
       dDiscord.addEventListener('input', ()=> previewRank(dDiscord.value.trim(), dRankView));
 
-      btnGrantXp.addEventListener('click', ()=>{
-        const discord = gxDiscord.value.trim(); const amount = Number(gxAmount.value); const reason = gxReason.value; const note = gxNote.value.trim(); const ref = gxRef.value.trim()||uid();
-        if(!isDiscord(discord)){ grantStatus.textContent='Invalid Discord ID'; grantStatus.className='status err'; return; }
-        if(!Number.isFinite(amount) || amount<=0){ grantStatus.textContent='Invalid amount'; grantStatus.className='status err'; return; }
-        const users = load(K.USERS, DEFAULT_USERS); const idx = users.findIndex(u=>u.discordId===discord);
-        if(idx===-1){ grantStatus.textContent='User not found'; grantStatus.className='status err'; return; }
-        if(users[idx].suspended){ grantStatus.textContent='Cannot grant XP to suspended user'; grantStatus.className='status warn'; return; }
-        users[idx].xp = (users[idx].xp||0) + amount;
-        users[idx].xpHistory = users[idx].xpHistory||[]; users[idx].xpHistory.push({ at:now(), delta:amount, by:actor(), note, ref });
-        save(K.USERS, users);
-        pushFeed({ at:now(), type:'XP_GRANT', actor:actor(), message:`+${amount} XP → ${discord} (${reason})`, ref });
-        renderUsers(); renderFeed();
-        gxDiscord.value=''; gxAmount.value=''; gxNote.value=''; gxRef.value='';
-        grantStatus.textContent='XP granted'; grantStatus.className='status ok';
+      /* Tools (HC only) */
+      btnExportUsers.addEventListener('click', async ()=>{
+        if(!session || session.key !== HC_MASTER){ alert('Export Users restricted to HC master'); return; }
+        const { data } = await supa.from('operators').select('*');
+        const blob = new Blob([JSON.stringify(data||[],null,2)],{type:'application/json'});
+        const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`aoc_users_${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.json`; a.click(); URL.revokeObjectURL(a.href);
       });
-      btnGrantReset.addEventListener('click', ()=>{ gxDiscord.value=''; gxAmount.value=''; gxNote.value=''; gxRef.value=''; grantStatus.textContent=''; grantStatus.className='status'; gxRankView.textContent='Rank: —'; });
-
-      btnPromote.addEventListener('click', ()=>{
-        const discord = pDiscord.value.trim(); const newRank = pRank.value.trim(); const note = pNote.value.trim();
-        if(!isDiscord(discord)){ promoteStatus.textContent='Invalid Discord ID'; promoteStatus.className='status err'; return; }
-        if(!newRank){ promoteStatus.textContent='New rank ID required'; promoteStatus.className='status err'; return; }
-        const users = load(K.USERS, DEFAULT_USERS); const idx = users.findIndex(u=>u.discordId===discord);
-        if(idx===-1){ promoteStatus.textContent='User not found'; promoteStatus.className='status err'; return; }
-        const beforeId = users[idx].rankId, beforeName = users[idx].rankName;
-        users[idx].rankId = newRank; users[idx].rankName = mapRankName(newRank);
-        users[idx].promoHistory = users[idx].promoHistory||[]; users[idx].promoHistory.push({ at:now(), from:`${beforeName||'N/A'} (${beforeId||'—'})`, to:`${users[idx].rankName} (${users[idx].rankId})`, by:actor(), ref:uid(), note });
-        save(K.USERS, users);
-        pushFeed({ at:now(), type:'PROMOTE', actor:actor(), message:`PROMOTE ${discord} → ${users[idx].rankName} (${newRank})`, ref:uid() });
-        renderUsers(); renderFeed();
-        pDiscord.value=''; pRank.value=''; pNote.value=''; promoteStatus.textContent='User promoted'; promoteStatus.className='status ok'; pRankView.textContent='Current rank: —';
+      btnExportFeed.addEventListener('click', async ()=>{
+        if(!session || session.key !== HC_MASTER){ alert('Export Feed restricted to HC master'); return; }
+        const { data } = await supa.from('audit_feed').select('*').order('at',{ascending:false});
+        const blob = new Blob([JSON.stringify(data||[],null,2)],{type:'application/json'});
+        const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`aoc_feed_${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.json`; a.click(); URL.revokeObjectURL(a.href);
       });
-      btnPromoteReset.addEventListener('click', ()=>{ pDiscord.value=''; pRank.value=''; pNote.value=''; promoteStatus.textContent=''; promoteStatus.className='status'; pRankView.textContent='Current rank: —'; });
-
-      btnDemote.addEventListener('click', ()=>{
-        const discord = dDiscord.value.trim(); const newRank = dRank.value.trim(); const note = dNote.value.trim();
-        if(!isDiscord(discord)){ demoteStatus.textContent='Invalid Discord ID'; demoteStatus.className='status err'; return; }
-        if(!newRank){ demoteStatus.textContent='New lower rank ID required'; demoteStatus.className='status err'; return; }
-        const users = load(K.USERS, DEFAULT_USERS); const idx = users.findIndex(u=>u.discordId===discord);
-        if(idx===-1){ demoteStatus.textContent='User not found'; demoteStatus.className='status err'; return; }
-        const beforeId = users[idx].rankId, beforeName = users[idx].rankName;
-        users[idx].rankId = newRank; users[idx].rankName = mapRankName(newRank);
-        users[idx].promoHistory = users[idx].promoHistory||[]; users[idx].promoHistory.push({ at:now(), from:`${beforeName||'N/A'} (${beforeId||'—'})`, to:`${users[idx].rankName} (${users[idx].rankId})`, by:actor(), ref:uid(), demote:true, note });
-        save(K.USERS, users);
-        pushFeed({ at:now(), type:'DEMOTE', actor:actor(), message:`DEMOTE ${discord} → ${users[idx].rankName} (${newRank})`, ref:uid() });
-        renderUsers(); renderFeed();
-        dDiscord.value=''; dRank.value=''; dNote.value=''; demoteStatus.textContent='User demoted'; demoteStatus.className='status ok'; dRankView.textContent='Current rank: —';
+      btnClearLocal.addEventListener('click', async ()=>{
+        if(!session || session.key !== HC_MASTER){ alert('Clear restricted to HC master'); return; }
+        alert('This action targets server-side data. Implement truncation only if you truly need it.');
       });
-      btnDemoteReset.addEventListener('click', ()=>{ dDiscord.value=''; dRank.value=''; dNote.value=''; demoteStatus.textContent=''; demoteStatus.className='status'; dRankView.textContent='Current rank: —'; });
 
-      btnSuspend.addEventListener('click', ()=>{
-        const discord = sDiscord.value.trim(); const duration = sDuration.value.trim()||'N/A'; const reason = sReason.value.trim()||'Manual'; const ref = sRef.value.trim()||uid();
-        if(!isDiscord(discord)){ suspendStatus.textContent='Invalid Discord ID'; suspendStatus.className='status err'; return; }
-        const users = load(K.USERS, DEFAULT_USERS); const idx = users.findIndex(u=>u.discordId===discord);
-        if(idx===-1){ suspendStatus.textContent='User not found'; suspendStatus.className='status err'; return; }
-        users[idx].suspended = true;
-        users[idx].suspHistory = users[idx].suspHistory||[]; users[idx].suspHistory.push({ at:now(), reason, duration, by:actor(), ref });
-        save(K.USERS, users);
-        const susp = load(K.SUSP, DEFAULT_SUSP); susp.unshift({ at:now(), discordId:discord, reason, duration, ref, by:actor() }); save(K.SUSP, susp);
-        pushFeed({ at:now(), type:'SUSPEND', actor:actor(), message:`SUSPEND ${discord} (${reason})`, ref });
-        renderUsers(); renderFeed();
-        sDiscord.value=''; sDuration.value=''; sReason.value=''; sRef.value='';
-        suspendStatus.textContent='User suspended'; suspendStatus.className='status ok';
+      /* HR unlock & list */
+      let hcUnlocked = false;
+      btnUnlockHr.addEventListener('click', async ()=>{
+        const val = hcKey.value.trim();
+        if(val===HC_MASTER){
+          hcUnlocked=true; hrEditor.classList.remove('hidden'); await renderHrList();
+          authStatus.textContent='HC unlocked'; authStatus.className='status ok'; hcKey.value='';
+        }
+        else { authStatus.textContent='Invalid HC master'; authStatus.className='status err'; }
       });
-      btnSuspendReset.addEventListener('click', ()=>{ sDiscord.value=''; sDuration.value=''; sReason.value=''; sRef.value=''; suspendStatus.textContent=''; suspendStatus.className='status'; });
+      btnAddHr.addEventListener('click', async ()=>{
+        const name = hrName.value.trim(); const key = hrKeyAdd.value.trim();
+        if(!name||!key){ authStatus.textContent='Name and key required'; authStatus.className='status warn'; return; }
+        const { data: exists } = await supa.from('hr_accounts').select('key').eq('key', key).limit(1);
+        if(exists && exists.length){ authStatus.textContent='HR key exists'; authStatus.className='status warn'; return; }
+        await supa.from('hr_accounts').insert([{ name, key, created_at: now() }]);
+        hrName.value=''; hrKeyAdd.value=''; await renderHrList(); authStatus.textContent='HR added'; authStatus.className='status ok';
+        await pushFeed({ type:'HR_ADD', actor:actor(), message:`HR ADD ${name}`, ref:uid() });
+      });
+      btnShowHr.addEventListener('click', renderHrList);
+      async function renderHrList(){
+        const { data:list } = await supa.from('hr_accounts').select('*').order('created_at',{ascending:false});
+        hrList.innerHTML = '';
+        (list||[]).forEach(h=>{
+          const row = document.createElement('div'); row.className='item';
+          row.innerHTML = `<div><strong>${h.name}</strong><div class="status" style="color:var(--muted)">${hcUnlocked? h.key : 'REDACTED'}</div></div>`;
+          if(hcUnlocked){
+            const del = document.createElement('button'); del.className='btn'; del.style.background='linear-gradient(180deg,#8b0000,#6b0000)'; del.textContent='Remove';
+            del.addEventListener('click', async ()=>{ if(!confirm('Remove HR account?')) return; await supa.from('hr_accounts').delete().eq('key', h.key); await renderHrList(); authStatus.textContent='HR removed'; authStatus.className='status ok'; await pushFeed({ type:'HR_REMOVE', actor:actor(), message:`HR REMOVE ${h.name}`, ref:uid() }); });
+            row.appendChild(del);
+          }
+          hrList.appendChild(row);
+        });
+      }
 
+      /* Rank map */
       function mapRankName(id){
         const m = {
           '4001':'Head Commander','4002':'Elite Commander','4003':'Senior Commander','4004':'Insurgency Commander','4005':'Lieutenant Commander','4006':'Trial Commander',
@@ -670,108 +689,181 @@
         return m[id] || 'Unknown Rank';
       }
 
-      let hcUnlocked = false;
-      btnUnlockHr.addEventListener('click', ()=>{
-        const val = hcKey.value.trim();
-        if(val===HC_MASTER){ hcUnlocked=true; hrEditor.classList.remove('hidden'); renderHrList(); authStatus.textContent='HC unlocked'; authStatus.className='status ok'; hcKey.value=''; }
-        else { authStatus.textContent='Invalid HC master'; authStatus.className='status err'; }
+      /* Actions: Grant XP */
+      btnGrantXp.addEventListener('click', async ()=>{
+        const discord = gxDiscord.value.trim();
+        const amount = Number(gxAmount.value);
+        const reason = gxReason.value;
+        const note = gxNote.value.trim();
+        const ref = gxRef.value.trim()||uid();
+
+        if(!isDiscord(discord)){ grantStatus.textContent='Invalid Discord ID'; grantStatus.className='status err'; return; }
+        if(!Number.isFinite(amount) || amount<=0){ grantStatus.textContent='Invalid amount'; grantStatus.className='status err'; return; }
+
+        const { data: users } = await supa.from('operators').select('discord_id,xp,suspended').eq('discord_id', discord).limit(1);
+        if(!users || !users.length){ grantStatus.textContent='User not found'; grantStatus.className='status err'; return; }
+        if(users[0].suspended){ grantStatus.textContent='Cannot grant XP to suspended user'; grantStatus.className='status warn'; return; }
+
+        const newXp = (users[0].xp||0)+amount;
+        await supa.from('operators').update({ xp:newXp }).eq('discord_id', discord);
+        await supa.from('xp_history').insert([{ discord_id:discord, amount, reason, note, ref, created_at: now() }]);
+        await pushFeed({ at:now(), type:'XP_GRANT', actor:actor(), message:`+${amount} XP → ${discord} (${reason})`, ref });
+
+        await renderUsers(); await renderFeed();
+
+        gxDiscord.value=''; gxAmount.value=''; gxNote.value=''; gxRef.value='';
+        gxRankView.textContent='Rank: —';
+        grantStatus.textContent='XP granted'; grantStatus.className='status ok';
       });
-      btnAddHr.addEventListener('click', ()=>{
-        const name = hrName.value.trim(); const key = hrKeyAdd.value.trim();
-        if(!name||!key){ authStatus.textContent='Name and key required'; authStatus.className='status warn'; return; }
-        const list = load(K.HR, DEFAULT_HR);
-        if(list.find(h=>h.key===key)){ authStatus.textContent='HR key exists'; authStatus.className='status warn'; return; }
-        list.push({ name, key }); save(K.HR, list); hrName.value=''; hrKeyAdd.value=''; renderHrList(); authStatus.textContent='HR added'; authStatus.className='status ok';
+      btnGrantReset.addEventListener('click', ()=>{
+        gxDiscord.value=''; gxAmount.value=''; gxNote.value=''; gxRef.value='';
+        gxRankView.textContent='Rank: —';
+        grantStatus.textContent=''; grantStatus.className='status';
       });
-      btnShowHr.addEventListener('click', renderHrList);
-      function renderHrList(){
-        const list = load(K.HR, DEFAULT_HR);
-        hrList.innerHTML = '';
-        list.forEach(h=>{
-          const row = document.createElement('div'); row.className='item';
-          row.innerHTML = `<div><strong>${h.name}</strong><div class="meta">${hcUnlocked? h.key : 'REDACTED'}</div></div>`;
-          if(hcUnlocked){
-            const del = document.createElement('button'); del.className='btn red small'; del.textContent='Remove';
-            del.addEventListener('click', ()=>{ if(!confirm('Remove HR account?')) return; const updated = load(K.HR, DEFAULT_HR).filter(x=> x.key!==h.key); save(K.HR, updated); renderHrList(); authStatus.textContent='HR removed'; authStatus.className='status ok'; });
-            row.appendChild(del);
-          }
-          hrList.appendChild(row);
-        });
+
+      /* Promote */
+      btnPromote.addEventListener('click', async ()=>{
+        const discord = pDiscord.value.trim();
+        const newRankId = pRank.value.trim();
+        const note = pNote.value.trim();
+
+        if(!isDiscord(discord)){ promoteStatus.textContent='Invalid Discord ID'; promoteStatus.className='status err'; return; }
+        if(!newRankId){ promoteStatus.textContent='New rank ID required'; promoteStatus.className='status err'; return; }
+
+        const { data: user } = await supa.from('operators').select('rank_id,rank_name').eq('discord_id', discord).limit(1);
+        if(!user || !user.length){ promoteStatus.textContent='User not found'; promoteStatus.className='status err'; return; }
+
+        const beforeId = user[0].rank_id || '—';
+        const beforeName = user[0].rank_name || 'N/A';
+        const afterName = mapRankName(newRankId);
+
+        await supa.from('operators').update({ rank_id:newRankId, rank_name:afterName }).eq('discord_id', discord);
+        await supa.from('promotions').insert([{ discord_id:discord, old_rank:`${beforeName} (${beforeId})`, new_rank:`${afterName} (${newRankId})`, note, ref:uid(), created_at: now() }]);
+        await pushFeed({ at:now(), type:'PROMOTE', actor:actor(), message:`PROMOTE ${discord} → ${afterName} (${newRankId})`, ref:uid() });
+
+        await renderUsers(); await renderFeed();
+
+        pDiscord.value=''; pRank.value=''; pNote.value='';
+        pRankView.textContent='Current rank: —';
+        promoteStatus.textContent='User promoted'; promoteStatus.className='status ok';
+      });
+      btnPromoteReset.addEventListener('click', ()=>{
+        pDiscord.value=''; pRank.value=''; pNote.value='';
+        pRankView.textContent='Current rank: —';
+        promoteStatus.textContent=''; promoteStatus.className='status';
+      });
+
+      /* Demote */
+      btnDemote.addEventListener('click', async ()=>{
+        const discord = dDiscord.value.trim();
+        const newRankId = dRank.value.trim();
+        const note = dNote.value.trim();
+
+        if(!isDiscord(discord)){ demoteStatus.textContent='Invalid Discord ID'; demoteStatus.className='status err'; return; }
+        if(!newRankId){ demoteStatus.textContent='New lower rank ID required'; demoteStatus.className='status err'; return; }
+
+        const { data: user } = await supa.from('operators').select('rank_id,rank_name').eq('discord_id', discord).limit(1);
+        if(!user || !user.length){ demoteStatus.textContent='User not found'; demoteStatus.className='status err'; return; }
+
+        const beforeId = user[0].rank_id || '—';
+        const beforeName = user[0].rank_name || 'N/A';
+        const afterName = mapRankName(newRankId);
+
+        await supa.from('operators').update({ rank_id:newRankId, rank_name:afterName }).eq('discord_id', discord);
+        await supa.from('demotions').insert([{ discord_id:discord, old_rank:`${beforeName} (${beforeId})`, new_rank:`${afterName} (${newRankId})`, note, ref:uid(), created_at: now() }]);
+        await pushFeed({ at:now(), type:'DEMOTE', actor:actor(), message:`DEMOTE ${discord} → ${afterName} (${newRankId})`, ref:uid() });
+
+        await renderUsers(); await renderFeed();
+
+        dDiscord.value=''; dRank.value=''; dNote.value='';
+        dRankView.textContent='Current rank: —';
+        demoteStatus.textContent='User demoted'; demoteStatus.className='status ok';
+      });
+      btnDemoteReset.addEventListener('click', ()=>{
+        dDiscord.value=''; dRank.value=''; dNote.value='';
+        dRankView.textContent='Current rank: —';
+        demoteStatus.textContent=''; demoteStatus.className='status';
+      });
+
+      /* Suspend */
+      btnSuspend.addEventListener('click', async ()=>{
+        const discord = sDiscord.value.trim();
+        const duration = sDuration.value.trim()||'N/A';
+        const reason = sReason.value.trim()||'Manual';
+        const ref = sRef.value.trim()||uid();
+
+        if(!isDiscord(discord)){ suspendStatus.textContent='Invalid Discord ID'; suspendStatus.className='status err'; return; }
+
+        const { data: user } = await supa.from('operators').select('discord_id').eq('discord_id', discord).limit(1);
+        if(!user || !user.length){ suspendStatus.textContent='User not found'; suspendStatus.className='status err'; return; }
+
+        await supa.from('operators').update({ suspended:true }).eq('discord_id', discord);
+        await supa.from('suspensions').insert([{ discord_id:discord, duration, reason, ref, created_at: now() }]);
+        await pushFeed({ at:now(), type:'SUSPEND', actor:actor(), message:`SUSPEND ${discord} (${reason})`, ref });
+
+        await renderUsers(); await renderFeed();
+
+        sDiscord.value=''; sDuration.value=''; sReason.value=''; sRef.value='';
+        suspendStatus.textContent='User suspended'; suspendStatus.className='status ok';
+      });
+      btnSuspendReset.addEventListener('click', ()=>{
+        sDiscord.value=''; sDuration.value=''; sReason.value=''; sRef.value='';
+        suspendStatus.textContent=''; suspendStatus.className='status';
+      });
+
+      /* Auth */
+      async function isValidCredential(code){
+        if(code===HC_MASTER) return { ok:true, role:'High Command' };
+        const { data } = await supa.from('hr_accounts').select('name,key').eq('key', code).limit(1);
+        const found = data && data[0];
+        if(found) return { ok:true, role:found.name };
+        return { ok:false };
       }
+      async function doAuth(){
+        const code = accessCode.value.trim();
+        if(!code){ authStatus.textContent='Enter HR key or HC master'; authStatus.className='status warn'; return; }
+        if(code.length<6){ authStatus.textContent='Code too short'; authStatus.className='status warn'; return; }
+        const cred = await isValidCredential(code);
+        if(!cred.ok){ authStatus.textContent='Incorrect code'; authStatus.className='status err'; await pushFeed({ at:now(), type:'AUTH_FAIL', actor:'UNKNOWN', message:'AUTH FAIL', ref:uid() }); return; }
+        setSession({ name:cred.role, key:code, at:now() });
+        const banner = cred.role==='High Command' ? 'High Command, welcome.' : 'High Rank Officer, welcome.';
+        sessionRole.textContent = `Role: ${cred.role} • ${banner}`;
+        authStatus.textContent='Access granted'; authStatus.className='status ok';
+        gate.style.display='none';
+        document.querySelector('header.top').style.display='';
+        document.querySelector('.app').style.display='';
+        await pushFeed({ at:now(), type:'AUTH', actor:cred.role, message:'AUTH SUCCESS', ref:uid() });
+        await renderAll();
+      }
+      btnAuth.addEventListener('click', doAuth);
+      btnReveal.addEventListener('click', ()=>{ accessCode.type = accessCode.type==='password' ? 'text' : 'password'; });
+      accessCode.addEventListener('keydown', e=>{ if(e.key==='Enter') doAuth(); });
 
-      btnExportUsers.addEventListener('click', ()=>{
-        const s = getSession(); if(!s || s.key !== HC_MASTER){ alert('Export Users restricted to HC master'); return; }
-        const data = load(K.USERS, DEFAULT_USERS);
-        const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-        const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`aoc_users_${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.json`; a.click(); URL.revokeObjectURL(a.href);
-      });
-      btnExportFeed.addEventListener('click', ()=>{
-        const s = getSession(); if(!s || s.key !== HC_MASTER){ alert('Export Feed restricted to HC master'); return; }
-        const data = load(K.FEED, DEFAULT_FEED);
-        const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-        const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`aoc_feed_${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.json`; a.click(); URL.revokeObjectURL(a.href);
-      });
-      btnClearLocal.addEventListener('click', ()=>{
-        const s = getSession(); if(!s || s.key !== HC_MASTER){ alert('Clear Local restricted to HC master'); return; }
-        if(!confirm('Clear users, feed and suspensions?')) return;
-        save(K.USERS, DEFAULT_USERS); save(K.FEED, DEFAULT_FEED); save(K.SUSP, DEFAULT_SUSP);
-        renderAll(); authStatus.textContent='Local data cleared'; authStatus.className='status ok';
-      });
-
+      /* Navigation */
       $$('.nav-item').forEach(it=>{
         it.addEventListener('click', ()=>{
           $$('.nav-item').forEach(n=> n.classList.remove('active'));
           it.classList.add('active');
           const target = it.getAttribute('data-target');
-          views.forEach(v=>{
+          ['view-ops','view-actions','view-feed','view-hr','view-ref'].forEach(v=>{
             const el = document.getElementById(v);
             if(el) el.classList.toggle('hidden', v!==target);
           });
         });
       });
 
-      function isValidCredential(code){
-        if(code===HC_MASTER) return { ok:true, role:'High Command' };
-        const found = load(K.HR, DEFAULT_HR).find(h=> h.key===code);
-        if(found) return { ok:true, role:found.name };
-        return { ok:false };
-      }
-      function doAuth(){
-        const code = accessCode.value.trim();
-        if(!code){ authStatus.textContent='Enter HR key or HC master'; authStatus.className='status warn'; return; }
-        if(code.length<6){ authStatus.textContent='Code too short'; authStatus.className='status warn'; return; }
-        const cred = isValidCredential(code);
-        if(!cred.ok){ authStatus.textContent='Incorrect code'; authStatus.className='status err'; pushFeed({ at:now(), type:'AUTH_FAIL', actor:'UNKNOWN', message:'AUTH FAIL', ref:uid() }); return; }
-        setSession({ name:cred.role, key:code, at:now() });
-        // XD
-        const banner = cred.role==='High Command' ? 'High Command, welcome.' :
-                       'High Rank Officer, welcome.'; // 
-        sessionRole.textContent = `Role: ${cred.role} • ${banner}`;
-        authStatus.textContent='Access granted'; authStatus.className='status ok';
-        pushFeed({ at:now(), type:'AUTH', actor:cred.role, message:'AUTH SUCCESS', ref:uid() });
-        gate.classList.add('hidden'); renderAll();
-      }
-      btnAuth.addEventListener('click', doAuth);
-      btnReveal.addEventListener('click', ()=>{ accessCode.type = accessCode.type==='password' ? 'text' : 'password'; });
-      accessCode.addEventListener('keydown', e=>{ if(e.key==='Enter') doAuth(); });
+      async function renderAll(){ await renderUsers(); await renderFeed(); await renderHrList(); }
 
-      btnLogout.addEventListener('click', ()=>{ clearSession(); location.reload(); });
-
-      searchUser.addEventListener('input', renderUsers);
-      feedFilter.addEventListener('change', renderFeed);
-      btnRefreshFeed.addEventListener('click', renderFeed);
-
-      function renderAll(){ renderUsers(); renderFeed(); renderHrList(); }
-      (function init(){
-        const s = getSession();
-        if(!s || !s.name){ gate.classList.remove('hidden'); }
-        else { gate.classList.add('hidden'); sessionRole.textContent = `Role: ${s.name} • ${s.key===HC_MASTER?'High Command, welcome.':'High Rank Officer, welcome.'}`; }
-
-        views.forEach(v=> document.getElementById(v).classList.toggle('hidden', v!=='view-ops'));
-        renderAll();
+      (async function init(){
+        gate.style.display='';
+        document.querySelector('header.top').style.display='none';
+        document.querySelector('.app').style.display='none';
+        ['view-ops','view-actions','view-feed','view-hr','view-ref'].forEach(v=> document.getElementById(v).classList.toggle('hidden', v!=='view-ops'));
       })();
 
     })();
   </script>
 </body>
 </html>
+```
+
